@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{|/css/bootstrap.min.css|}">
+    <script th:src="@{|/js/jquery.min.js|}"></script>
+    <script th:src="@{|/js/bootstrap.min.js|}"></script>
+    <title>Title</title>
+
+    <script>
+        $(function () {
+            $(".deleteWarning").bind("click",function () {
+                if (!confirm("您确定删除吗?不可恢复哦")){
+                    return false;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body style="'margin:50px;'">
+<div><a href="#">添加用户</a></div>
+<table class="table table-striped">
+    <caption>条纹表格布局</caption>
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>昵称</th>
+        <th>手机</th>
+        <th>邮箱</th>
+        <th>地址</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user,index:${userList}">
+
+        <td th:text="${index.count}"></td>
+        <td th:text="${user.nick}"></td>
+        <td th:text="${user.phone}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.address}"></td>
+        <td>
+            <a  th:href="@{|/edit/${user.id}|}">修改</a>
+            <a th:href="@{|/delete/${user.id}|}" class="deleteWarning">删除</a>
+        </td>
+    </tr>
+    <tr>
+        <td>当前第[[${p}]]页</td>
+        <td>共[[${totalPage}]]页</td>
+        <td>共[[${totalRows}]]条</td>
+        <td th:if="${p == 1}">
+            首页  上一页
+        </td>
+        <td th:if="${p > 1}">
+            <a th:href="@{|/?p=1|}">首页</a>  <a th:href="@{|/?p=${p - 1}|}">上一页</a>
+        </td>
+        <td th:if="${p == totalPage}">
+            下一页  尾页
+        </td>
+        <td th:if="${p < totalPage}">
+            <a th:href="@{|/?p=${p + 1}|}">下一页</a>  <a th:href="@{|/?p=${totalPage}|}">尾页</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 配置数据库连接，阿里数据源druid连接池 -->
+    <bean id="dataSource3307" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="jdbc:mysql://192.168.108.130:3307/test?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!-- 配置数据库连接，阿里数据源druid连接池 -->
+    <bean id="dataSource3308" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="jdbc:mysql://192.168.108.130:3308/test?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!-- 配置数据库连接，阿里数据源druid连接池 -->
+    <bean id="dataSource3309" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="jdbc:mysql://192.168.108.130:3309/test?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!-- 配置数据库连接，阿里数据源druid连接池 -->
+    <bean id="dataSource3310" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="jdbc:mysql://192.168.108.130:3310/test?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <!-- MyBatis sqlSessionFactory 配置 mybatis -->
+    <bean id="sqlSessionFactory3307" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource3307"/>
+    </bean>
+
+    <!-- MyBatis sqlSessionFactory 配置 mybatis -->
+    <bean id="sqlSessionFactory3308" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource3308"/>
+    </bean>
+
+    <!-- MyBatis sqlSessionFactory 配置 mybatis -->
+    <bean id="sqlSessionFactory3309" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource3309"/>
+    </bean>
+
+    <!-- MyBatis sqlSessionFactory 配置 mybatis -->
+    <bean id="sqlSessionFactory3310" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource3310"/>
+    </bean>
+
+
+    <!-- scan for mappers and let them be autowired -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.bjpowernode.multi.mapper.db3307"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory3307"/>
+    </bean>
+
+    <!-- scan for mappers and let them be autowired -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.bjpowernode.multi.mapper.db3308"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory3308"/>
+    </bean>
+
+    <!-- scan for mappers and let them be autowired -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.bjpowernode.multi.mapper.db3309"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory3309"/>
+    </bean>
+
+    <!-- scan for mappers and let them be autowired -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.bjpowernode.multi.mapper.db3310"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory3310"/>
+    </bean>
+
+</beans>

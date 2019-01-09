@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/layer/layer.js}"></script>
+    <title>Title</title>
+</head>
+
+<body th:style="'margin:50px;'">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>身份证</th>
+        <th>手机</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user:${userList}">
+        <td th:text="${userStat.count}"></td>
+        <td th:text="${user.getRealName()}"></td>
+        <td th:text="${user.getIdCard()}"></td>
+        <td th:text="${user.getPrhone()}"></td>
+        <td th:text="${user.getSex() == 1 ? '男':'女'}"></td>
+        <td>
+            <span th:if="${user.getRemoteFileName() == null || '' == user.getRemoteFileName()}">
+                <a th:href="@{|/goUpload/${user.getId()}|}">上传</a>
+            </span>
+            <span th:unless="${user.getRemoteFileName() == null || '' == user.getRemoteFileName()}">
+                <a th:href="@{|/download/${user.getId()}|}">下载</a>
+                <a th:href="'javascript:deleteUser('+${user.id}+')'" >删除</a>
+            </span>
+
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+<form id="deleteForm" th:method="delete" th:style="'display:none;'"></form>
+
+<script th:type="'text/javascript'" th:inline="javascript">
+    function deleteUser(id) {
+
+        layer.confirm('确定删除合同吗？不可恢复哦!', {
+            btn: ['确定','算了吧'] //按钮
+        }, function(){
+            var contextPath = [[${#request.getContextPath()}]];
+            $("#deleteForm").attr("action", contextPath + "/delete/" + id);
+            $("#deleteForm").submit();
+        });
+    }
+</script>
+
+</body>
+</html>

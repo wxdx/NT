@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>高并发秒杀项目实战</title>
+</head>
+<body th:inline="text">
+    <div th:each="goods:${goodsList}" style="float: left;width: 370px">
+
+        <a th:href="@{|/goods/detail/${goods.id}|}"><img th:src="@{|/${goods.imageUrl}|}"/></a><br/>
+        <a th:href="@{|/goods/detail/${goods.id}|}">[[${goods.name}]]&nbsp; [[${goods.nameDesc}]]</a><br/>
+        <span style="font-size: 18px;color: red;font-weight: bold;"> ¥[[${goods.price}]]</span>&nbsp;&nbsp;
+        仅剩<span style="font-size: 15px;color: red;font-weight: bold;">[[${goods.store}]]</span>件
+        <br/><br/><br/><br/>
+    </div>
+</body>
+</html>

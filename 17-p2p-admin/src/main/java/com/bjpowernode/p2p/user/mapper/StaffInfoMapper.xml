@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.p2p.user.mapper.StaffInfoMapper">
+  <resultMap id="BaseResultMap" type="com.bjpowernode.p2p.user.model.StaffInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="staff_no" jdbcType="VARCHAR" property="staffNo" />
+    <result column="org_id" jdbcType="INTEGER" property="orgId" />
+    <result column="job_title" jdbcType="VARCHAR" property="jobTitle" />
+    <result column="hire_date" jdbcType="TIMESTAMP" property="hireDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, phone, email, real_name, sex, staff_no, org_id, job_title, hire_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from u_staff_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from u_staff_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bjpowernode.p2p.user.model.StaffInfo">
+    insert into u_staff_info (id, phone, email, 
+      real_name, sex, staff_no, 
+      org_id, job_title, hire_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{staffNo,jdbcType=VARCHAR}, 
+      #{orgId,jdbcType=INTEGER}, #{jobTitle,jdbcType=VARCHAR}, #{hireDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bjpowernode.p2p.user.model.StaffInfo">
+    insert into u_staff_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="staffNo != null">
+        staff_no,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="jobTitle != null">
+        job_title,
+      </if>
+      <if test="hireDate != null">
+        hire_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="staffNo != null">
+        #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="jobTitle != null">
+        #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="hireDate != null">
+        #{hireDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bjpowernode.p2p.user.model.StaffInfo">
+    update u_staff_info
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="staffNo != null">
+        staff_no = #{staffNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="jobTitle != null">
+        job_title = #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="hireDate != null">
+        hire_date = #{hireDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bjpowernode.p2p.user.model.StaffInfo">
+    update u_staff_info
+    set phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      staff_no = #{staffNo,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=INTEGER},
+      job_title = #{jobTitle,jdbcType=VARCHAR},
+      hire_date = #{hireDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

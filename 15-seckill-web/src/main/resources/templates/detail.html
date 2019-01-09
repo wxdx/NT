@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>高并发秒杀项目实战</title>
+    <script type="text/javascript" th:src="@{|/js/jquery.min.js|}"></script>
+    <script type="text/javascript" th:src="@{|/js/jquery.countdown.min.js|}"></script>
+    <script type="text/javascript" th:src="@{|/js/seckill.js|}"></script>
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+            seckillObj.path = [[${#request.getContextPath()}]];
+            var startTime = [[${goods.startTime.getTime()}]];
+            var endTime = [[${goods.endTime.getTime()}]];
+            var nowTime = [[${nowTime}]];
+            var id = [[${goods.id}]];
+            seckillObj.func.initDetail(startTime, endTime, nowTime,id);
+        })
+    </script>
+</head>
+<body th:inline="text" style="margin: 100px">
+    <!--左侧div-->
+    <div style="float: left">
+        <img th:src="@{|/${goods.imageUrl}|}"/>
+    </div>
+    <!--右侧div-->
+    <div style="float: left">
+        <p>
+            [[${goods.name}]]&nbsp; [[${goods.nameDesc}]]<br/>
+        </p>
+        <p>
+            秒杀价:<span style="font-size: 18px;color: red;font-weight: bold;"> ¥[[${goods.price}]]</span>&nbsp;&nbsp;
+        </p>
+        <p>
+            仅剩<span style="font-size: 15px;color: red;font-weight: bold;">[[${goods.store}]]</span>件
+        </p>
+
+        <p id="seckillTip">
+            <!--
+              1.秒杀还未开始,显示秒杀倒计时
+              2.秒杀已经开始,显示秒杀按钮
+              3.秒杀已经结束,显示秒杀时间已过
+            -->
+        </p>
+
+
+
+    </div>
+    <br/><br/>
+
+</body>
+</html>
